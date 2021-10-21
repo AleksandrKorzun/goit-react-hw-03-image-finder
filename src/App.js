@@ -59,7 +59,7 @@ class App extends Component {
       />
       {this.state.loader && <Loader/>}
       <ImageGallery pictures={this.state.picture} onToggleModal={this.onModalImageUrl}/>
-      {this.state.picture.length !== 0 && <Button getMorePictures={this.onHandleMorePicture}/>}
+      {!!this.state.picture.length  && <Button getMorePictures={this.onHandleMorePicture}/>}
       {this.state.isOpenModal && <Modal largeImageURL={this.state.largeImageURL} onToggleModal={this.onToggleModal}/>}
       </>
     );
