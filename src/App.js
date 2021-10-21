@@ -12,7 +12,7 @@ import Loader from './components/Loader/Loader';
 class App extends Component {
   state = { 
     picture: [],
-    page: 0,
+    page: 1,
     search: "",
     isOpenModal: false, 
     largeImageURL : "",
