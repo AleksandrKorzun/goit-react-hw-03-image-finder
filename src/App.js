@@ -21,6 +21,8 @@ class App extends Component {
    componentDidUpdate(_, prevState) {
      const bool = prevState.page !== this.state.page 
      console.log(bool)
+     console.log(`prevState.page`, prevState.page)
+     console.log(`this.state.page`, this.state.page)
      if (prevState.page !== this.state.page || prevState.search !== this.state.search) {
       this.onToggleLoader()
       getPictures(this.state.search, this.state.page).
@@ -51,7 +53,7 @@ class App extends Component {
     this.onToggleModal()    
    }
    onToggleLoader = () => {
-     this.setState((prev) =>({loader: !prev.loader}))
+    //  this.setState((prev) =>({loader: !prev.loader}))
    }
   render() {
     return (
