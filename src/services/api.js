@@ -13,8 +13,6 @@ const getPictures = async (search, page) => {
     }
 
 }
-
-
 export {getPictures}
 
 

@@ -45,7 +45,6 @@ class App extends Component {
      this.setState((prev) => ({ isOpenModal: !prev.isOpenModal}))
    }
    onModalImageUrl = (e) => {
-
     this.setState({largeImageURL: e.target.id})
     this.onToggleModal()    
    }
