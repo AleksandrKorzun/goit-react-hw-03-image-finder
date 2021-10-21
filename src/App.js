@@ -19,6 +19,8 @@ class App extends Component {
     loader: false
    }
    componentDidUpdate(_, prevState) {
+     const bool = prevState.page !== this.state.page 
+     console.log(bool)
      if (prevState.page !== this.state.page || prevState.search !== this.state.search) {
       this.onToggleLoader()
       getPictures(this.state.search, this.state.page).
