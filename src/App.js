@@ -22,7 +22,6 @@ class App extends Component {
    componentDidUpdate(prevProps, prevState) {
      
      if (prevState.page !== this.state.page || prevState.search !== this.state.search) {
-    
       this.onToggleLoader()
       getPictures(this.state.search, this.state.page).
       then(data=>this.setState(prev=>({picture: [...prev.picture, ...data]}))).finally(this.onToggleLoader())
