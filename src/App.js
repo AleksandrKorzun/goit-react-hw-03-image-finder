@@ -19,30 +19,49 @@ class App extends Component {
     loader: false
    }
    
-   componentDidUpdate(prevProps, prevState) {
+  //  componentDidUpdate(prevProps, prevState) {
      
-     if (prevState.page !== this.state.page || prevState.search !== this.state.search) {
-      this.onToggleLoader()
-      getPictures(this.state.search, this.state.page).
-      then(data=>this.setState(prev=>({picture: [...prev.picture, ...data]}))).finally(this.onToggleLoader())
-     }
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth",
-    });
-   }
+  //    if (prevState.page !== this.state.page || prevState.search !== this.state.search) {
+  //     this.onToggleLoader()
+  //     getPictures(this.state.search, this.state.page).
+  //     then(data=>this.setState(prev=>({picture: [...prev.picture, ...data]}))).finally(this.onToggleLoader())
+  //    }
+  //   window.scrollTo({
+  //     top: document.body.scrollHeight,
+  //     behavior: "smooth",
+  //   });
+  //  }
    onHandleSubmit = (e) => {
      e.preventDefault()
      
      const search = e.target.elements[1].value;
      this.setState({page: 1, search, picture: []})
-    
+     setTimeout(() => {
+      this.morePictures()
+     }, 500); 
    }
    onHandleMorePicture = (e) => {
     
     this.setState(prev=>({page: prev.page += 1}))
+    setTimeout(() => {
+      this.morePictures()
+      this.scroll()
+     }, 500); 
    }
-
+   morePictures = () => {
+    
+      this.onToggleLoader()
+      getPictures(this.state.search, this.state.page).
+      then(data=>this.setState(prev=>({picture: !!prev.picture.length ? data : [...prev.picture, ...data]}))).finally(this.onToggleLoader())
+  
+    
+   }
+   scroll = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+   }
    onToggleModal = (e) => {
      this.setState((prev) => ({ isOpenModal: !prev.isOpenModal}))
    }
