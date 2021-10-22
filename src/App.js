@@ -18,12 +18,11 @@ class App extends Component {
     largeImageURL : "",
     loader: false
    }
-   componentDidUpdate(_, prevState) {
-     const bool = prevState.page !== this.state.page 
-     console.log(bool)
-     console.log(`prevState.page`, prevState.page)
-     console.log(`this.state.page`, this.state.page)
+   
+   componentDidUpdate(prevProps, prevState) {
+     
      if (prevState.page !== this.state.page || prevState.search !== this.state.search) {
+    
       this.onToggleLoader()
       getPictures(this.state.search, this.state.page).
       then(data=>this.setState(prev=>({picture: [...prev.picture, ...data]}))).finally(this.onToggleLoader())
