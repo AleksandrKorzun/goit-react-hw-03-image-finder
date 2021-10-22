@@ -44,7 +44,6 @@ class App extends Component {
      }, 600); 
     }
     onHandleMorePicture = (e) => {
-      
       this.setState(prev=>({page: prev.page += 1}))
       setTimeout(() => {
         this.morePictures()
@@ -54,11 +53,9 @@ class App extends Component {
       }, 600); 
    }
    morePictures = () => {
-    
       this.onToggleLoader()
       getPictures(this.state.search, this.state.page).
       then(data=>this.setState(prev=>({picture: [...prev.picture, ...data]}))).finally(this.onToggleLoader())
-      
    }
    firstSearch = () => {
     this.onToggleLoader()
