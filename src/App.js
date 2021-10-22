@@ -37,24 +37,33 @@ class App extends Component {
      const search = e.target.elements[1].value;
      this.setState({page: 1, search, picture: []})
      setTimeout(() => {
-      this.morePictures()
+      this.firstSearch()
      }, 500); 
-   }
-   onHandleMorePicture = (e) => {
-    
-    this.setState(prev=>({page: prev.page += 1}))
-    setTimeout(() => {
-      this.morePictures()
-      this.scroll()
-     }, 500); 
+     setTimeout(() => {
+       this.scroll()
+     }, 600); 
+    }
+    onHandleMorePicture = (e) => {
+      
+      this.setState(prev=>({page: prev.page += 1}))
+      setTimeout(() => {
+        this.morePictures()
+      }, 500); 
+      setTimeout(() => {
+        this.scroll()
+      }, 600); 
    }
    morePictures = () => {
     
       this.onToggleLoader()
       getPictures(this.state.search, this.state.page).
-      then(data=>this.setState(prev=>({picture: !!prev.picture.length ? data : [...prev.picture, ...data]}))).finally(this.onToggleLoader())
-  
-    
+      then(data=>this.setState(prev=>({picture: [...prev.picture, ...data]}))).finally(this.onToggleLoader())
+      
+   }
+   firstSearch = () => {
+    this.onToggleLoader()
+    getPictures(this.state.search, this.state.page).
+    then(data=>this.setState({picture: data})).finally(this.onToggleLoader())
    }
    scroll = () => {
     window.scrollTo({
